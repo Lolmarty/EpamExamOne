@@ -1,0 +1,17 @@
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\EpamExam.exe.config
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\chromedriver.exe
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\chromedriver-license.txt
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\EpamExam.exe
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\EpamExam.pdb
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\Excel.dll
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\ICSharpCode.SharpZipLib.dll
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\nunit.framework.dll
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\WebDriver.dll
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\WebDriver.Support.dll
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\Excel.pdb
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\nunit.framework.xml
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\WebDriver.xml
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\bin\Debug\WebDriver.Support.xml
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\obj\Debug\EpamExam.exe
+c:\users\tntmkiii\documents\visual studio 2013\Projects\EpamExam\EpamExam\obj\Debug\EpamExam.pdb
+C:\Users\TNTMKIII\Documents\Visual Studio 2013\Projects\EpamExam\EpamExam\obj\Debug\EpamExam.csprojResolveAssemblyReference.cache
