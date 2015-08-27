@@ -583,7 +583,7 @@ namespace EpamExam
         public IWebElement contGoods { get; set; }
 
         
-        //experimental dynamically locateable loader pane
+        //loader pane
         [FindsBy(How = How.Name, Using = "more_goods")]
         public IWebElement MoreGoodsPane { get; set; }
     }

@@ -19,7 +19,7 @@ namespace EpamExam
         [FindsBy(How = How.XPath, Using = "//*[@id=\"tab_content\"]/div/div/div[2]/dl")]
         public IWebElement contProperties { get; set; }
 
-        //title of the good for naming purposes
+        //title of the good 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"tab_content\"]/div/div/div[2]/h2")]
         public IWebElement txGoodTitle { get; set; }
 

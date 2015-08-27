@@ -219,7 +219,8 @@ namespace EpamExam
         /// <param name="miliunit_capture_seq"></param>
         /// <param name="unit_capture_seq"></param>
         /// <returns></returns>
-        public static bool InRangeConvertThousand(string value, List<Enum> keys, Dictionary<Enum, Range> ranges, string miliunit_capture_seq, string unit_capture_seq)
+        public static bool InRangeConvertThousand(string value, List<Enum> keys, Dictionary<Enum, Range> ranges,
+            string miliunit_capture_seq, string unit_capture_seq)
         {
             Regex gb_capturer = new Regex(miliunit_capture_seq);
             
@@ -262,7 +263,8 @@ namespace EpamExam
         /// <param name="title_value_pairs"></param>
         /// <param name="criteria_keyword_pairs_list"></param>
         /// <returns></returns>
-        public static bool AssertPropertiesContains(string property_name, List<Enum> selected_criteria_indexes, Dictionary<Enum, string> keywords, Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
+        public static bool AssertPropertiesContains(string property_name, List<Enum> selected_criteria_indexes,
+            Dictionary<Enum, string> keywords, Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
         {
             bool local_match = false;
             string options;
@@ -284,7 +286,8 @@ namespace EpamExam
         /// <param name="title_value_pairs"></param>
         /// <param name="criteria_keyword_pairs_list"></param>
         /// <returns></returns>
-        public static bool AssertPropertiesContainsOr(string property_name, List<Enum> selected_criteria_indexes, Dictionary<Enum, string[]> keywords, Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
+        public static bool AssertPropertiesContainsOr(string property_name, List<Enum> selected_criteria_indexes, 
+            Dictionary<Enum, string[]> keywords, Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
         {
             bool local_match = false;
             string options;
@@ -306,7 +309,8 @@ namespace EpamExam
         /// <param name="title_value_pairs"></param>
         /// <param name="criteria_keyword_pairs_list"></param>
         /// <returns></returns>
-        public static bool AssertPropertiesContainsAnd(string property_name, List<Enum> selected_criteria_indexes, Dictionary<Enum, string[]> keywords, Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
+        public static bool AssertPropertiesContainsAnd(string property_name, List<Enum> selected_criteria_indexes, 
+            Dictionary<Enum, string[]> keywords, Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
         {
             bool local_match = false;
             string options;
@@ -329,7 +333,8 @@ namespace EpamExam
         /// <param name="title_value_pairs"></param>
         /// <param name="criteria_keyword_pairs_list"></param>
         /// <returns></returns>
-        public static bool AssertPropertiesInRange(string property_name, List<Enum> selected_criteria_indexes, Dictionary<Enum, Range> ranges, string capture_seq, Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
+        public static bool AssertPropertiesInRange(string property_name, List<Enum> selected_criteria_indexes, 
+            Dictionary<Enum, Range> ranges, string capture_seq, Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
         {
             bool local_match = false;
             string options;
@@ -354,7 +359,9 @@ namespace EpamExam
         /// <param name="title_value_pairs"></param>
         /// <param name="criteria_keyword_pairs_list"></param>
         /// <returns></returns>
-        public static bool AssertPropertiesInRangeConvertThousand(string property_name, List<Enum> selected_criteria_indexes, Dictionary<Enum, Range> ranges, string miliunit_capture_seq, string unit_capture_seq, Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
+        public static bool AssertPropertiesInRangeConvertThousand(string property_name, List<Enum> selected_criteria_indexes, 
+            Dictionary<Enum, Range> ranges, string miliunit_capture_seq, string unit_capture_seq, 
+            Dictionary<string, string> title_value_pairs, string[] criteria_keyword_pairs_list)
         {
             bool local_match = false;
             string options;
@@ -377,7 +384,8 @@ namespace EpamExam
         /// <param name="title_value_pairs"></param>
         /// <param name="selected_criteria_set"></param>
         /// <returns></returns>
-        public static bool AssertProperties(string product_name, Filters key, Dictionary<string, string> title_value_pairs, Dictionary<Enum, List<Enum>> selected_criteria_set)
+        public static bool AssertProperties(string product_name, Filters key, Dictionary<string, string> title_value_pairs, 
+            Dictionary<Enum, List<Enum>> selected_criteria_set)
         {
             //we assume that our product does not fulfill any of the options
             bool local_match = false;
