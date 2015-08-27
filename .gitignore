@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/EpamExam.zip
+/EpamExam_clunky.zip
+/EpamExam/bin/
+/EpamExam/obj/
