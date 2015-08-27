@@ -140,7 +140,8 @@ namespace EpamExam
         /// </summary>
         /// <param name="filters"></param>
         /// <param name="selected_criteria_set"></param>
-        public static void SelectRandomCriteriaSet(Dictionary<Enum, Dictionary<Enum, IWebElement>> filters, out Dictionary<Enum, List<Enum>> selected_criteria_set)
+        public static void SelectRandomCriteriaSet(Dictionary<Enum, Dictionary<Enum, IWebElement>> filters,
+            out Dictionary<Enum, List<Enum>> selected_criteria_set)
         {
             selected_criteria_set = new Dictionary<Enum, List<Enum>>();
 
@@ -191,7 +192,10 @@ namespace EpamExam
                 }
                 catch (System.Reflection.TargetInvocationException)
                 {
-                    break;  //If the element isn't found this either means that we've reached the limit or we are too slow. in either case, we stop
+                    break;  
+                    //If the element isn't found this either means 
+                    //that we've reached the limit or we are too slow. 
+                    //in either case, we stop
                 }
                 catch (NoSuchElementException)
                 {

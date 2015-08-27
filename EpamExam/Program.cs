@@ -160,7 +160,8 @@ namespace EpamExam
         /// <param name="keys"></param>
         /// <param name="keywords"></param>
         /// <returns></returns>
-        public static bool ContainsOr(string value, List<Enum> keys, Dictionary<Enum, string[]> keywords)  //TODO think about logic of this one, maybe also check that no other keywords are in
+        public static bool ContainsOr(string value, List<Enum> keys, Dictionary<Enum, string[]> keywords)  
+            //TODO think about logic of this one, maybe also check that no other keywords are in
         {
             bool contains = false;
 
@@ -368,7 +369,8 @@ namespace EpamExam
             foreach (string title in criteria_keyword_pairs_list)
             {
                 string value = title_value_pairs[title];
-                local_match = local_match || InRangeConvertThousand(value, selected_criteria_indexes, ranges, miliunit_capture_seq, unit_capture_seq);
+                local_match = local_match || 
+                    InRangeConvertThousand(value, selected_criteria_indexes, ranges, miliunit_capture_seq, unit_capture_seq);
             }
             options = String.Join(",", selected_criteria_indexes.Select(index => ranges[index].ToString()).ToList());
             Assert.IsTrue(local_match,
@@ -394,127 +396,164 @@ namespace EpamExam
             {
                 case Filters.Producer:
                     {
-                        local_match = local_match || Contains(product_name, selected_criteria_set[key], PropertyKeywordContainer.ProducerEnumDict);
+                        local_match = local_match || 
+                            Contains(product_name, selected_criteria_set[key], PropertyKeywordContainer.ProducerEnumDict);
                         string options = String.Join(",", selected_criteria_set[key].Select(index => PropertyKeywordContainer.ProducerEnumDict[index]).ToList());
                         Assert.IsTrue(local_match, "property Producer does not match the criteria. selected options were " + options);
                         break;
                     }
                 case Filters.ScreenDiag:
                     {
-                        local_match = local_match || AssertPropertiesInRange("ScreenDiagonal", selected_criteria_set[key],
-                            PropertyKeywordContainer.ScreenDiagEnumDict, PropertyKeywordContainer.ScreenDiagCapruteSeq, title_value_pairs,
+                        local_match = local_match || AssertPropertiesInRange("ScreenDiagonal", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.ScreenDiagEnumDict, 
+                            PropertyKeywordContainer.ScreenDiagCapruteSeq, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.ScreenResol:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("ScreenResolution", selected_criteria_set[key],
-                            PropertyKeywordContainer.ScreenResolEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsOr("ScreenResolution", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.ScreenResolEnumDict,
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.ScreenType:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("ScreenType", selected_criteria_set[key],
-                            PropertyKeywordContainer.ScreenTypeEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsOr("ScreenType", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.ScreenTypeEnumDict,
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.ScreenCover:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("ScreenCover", selected_criteria_set[key],
-                            PropertyKeywordContainer.ScreenCoverEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsOr("ScreenCover", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.ScreenCoverEnumDict,
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.ScreenSensor:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("ScreenSensor", selected_criteria_set[key],
-                            PropertyKeywordContainer.ScreenSensorEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsOr("ScreenSensor", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.ScreenSensorEnumDict,
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.Processor:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("Processor", selected_criteria_set[key],
+                        local_match = local_match || AssertPropertiesContainsOr("Processor", 
+                            selected_criteria_set[key],
                             PropertyKeywordContainer.ProcessorEnumDict, title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.RAM:
                     {
-                        local_match = local_match || AssertPropertiesInRange("RAM", selected_criteria_set[key],
-                            PropertyKeywordContainer.RAMEnumDict, PropertyKeywordContainer.RAMCapruteSeq, title_value_pairs,
+                        local_match = local_match || AssertPropertiesInRange("RAM", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.RAMEnumDict, 
+                            PropertyKeywordContainer.RAMCapruteSeq, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.GPUType:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("GPUType", selected_criteria_set[key],
-                            PropertyKeywordContainer.GPUTypeEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsOr("GPUType", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.GPUTypeEnumDict, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.GPUMemoryCapacity:
                     {
-                        local_match = local_match || AssertPropertiesInRange("GPUMemoryCapacity", selected_criteria_set[key],
-                            PropertyKeywordContainer.GPUMemoryCapacityEnumDict, PropertyKeywordContainer.GPUMemoryCapacityCapruteSeq, title_value_pairs,
+                        local_match = local_match || AssertPropertiesInRange("GPUMemoryCapacity", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.GPUMemoryCapacityEnumDict, 
+                            PropertyKeywordContainer.GPUMemoryCapacityCapruteSeq, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.StorageType:
                     {
-                        local_match = local_match || AssertPropertiesContainsAnd("StorageType", selected_criteria_set[key],
-                            PropertyKeywordContainer.StorageTypeEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsAnd("StorageType", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.StorageTypeEnumDict, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.StorageVolume:
                     {
-                        local_match = local_match || AssertPropertiesInRangeConvertThousand("StorageVolume", selected_criteria_set[key],
+                        local_match = local_match || AssertPropertiesInRangeConvertThousand("StorageVolume", 
+                            selected_criteria_set[key],
                             PropertyKeywordContainer.StorageVolumeEnumDict,
                             PropertyKeywordContainer.StorageVolumeGigabyteCapruteSeq,
-                            PropertyKeywordContainer.StorageVolumeTerabyteCapruteSeq, title_value_pairs,
+                            PropertyKeywordContainer.StorageVolumeTerabyteCapruteSeq, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.OpticalDrive:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("OpticalDrive", selected_criteria_set[key],
-                            PropertyKeywordContainer.OpticalDriveEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsOr("OpticalDrive", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.OpticalDriveEnumDict, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.OS:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("OS", selected_criteria_set[key],
-                            PropertyKeywordContainer.OSEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsOr("OS", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.OSEnumDict, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.UAKeys:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("UAKeys", selected_criteria_set[key],
-                            PropertyKeywordContainer.UAKeysEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsOr("UAKeys", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.UAKeysEnumDict, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.Weight:
                     {
-                        local_match = local_match || AssertPropertiesInRange("Weight", selected_criteria_set[key],
-                            PropertyKeywordContainer.WeightEnumDict, PropertyKeywordContainer.WeightCapruteSeq, title_value_pairs,
+                        local_match = local_match || AssertPropertiesInRange("Weight", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.WeightEnumDict, 
+                            PropertyKeywordContainer.WeightCapruteSeq, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 case Filters.Color:
                     {
-                        local_match = local_match || AssertPropertiesContainsOr("Color", selected_criteria_set[key],
-                            PropertyKeywordContainer.ColorEnumDict, title_value_pairs,
+                        local_match = local_match || AssertPropertiesContainsOr("Color", 
+                            selected_criteria_set[key],
+                            PropertyKeywordContainer.ColorEnumDict, 
+                            title_value_pairs,
                             PropertyKeywordContainer.FilterKeywordPairs[key]);
                         break;
                     }
                 default:
-                    local_match = true;  // there are criteria which really aren't testable. named criteria
+                    local_match = true;  
+                // there are criteria which really aren't testable. named criteria
                     break;
 
             }
