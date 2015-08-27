@@ -38,7 +38,7 @@ namespace EpamExam
         /// <param name="driver"></param>
         public static void SwitchTabRight(this IWebDriver driver)
         {
-            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + Keys.Tab);  
+            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + Keys.Tab);
             driver.SwitchFocus();  //to switch focus to current tab, otherwise the driver will be left behind
         }
 
@@ -49,7 +49,7 @@ namespace EpamExam
         /// <param name="driver"></param>
         public static void SwitchTabLeft(this IWebDriver driver)
         {
-            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + Keys.Shift + Keys.Tab); 
+            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + Keys.Shift + Keys.Tab);
             driver.SwitchFocus();  //to switch focus to current tab
         }
 
@@ -84,7 +84,7 @@ namespace EpamExam
             {
                 return false;
             }
-            
+
             return true;
         }
 
@@ -96,7 +96,7 @@ namespace EpamExam
         {
             element.SendKeys(Keys.Control + Keys.Return);
         }
-        
+
         /// <summary>
         /// Generates a list of OptionCount options from the elements in criteria_in_filter
         /// </summary>
@@ -107,14 +107,14 @@ namespace EpamExam
             selected_options_list = new List<Enum>();
 
             Random gen = new Random();
-            
+
             bool selected = false;
             int tries = Tries;
             int options_count = OptionCount;
             int selected_criterion = gen.Next(criteria_in_filter.Keys.Count);
-            Enum key = criteria_in_filter.Keys.ToList()[selected_criterion];  
+            Enum key = criteria_in_filter.Keys.ToList()[selected_criterion];
 
-            while (options_count > 0 && tries > 0) 
+            while (options_count > 0 && tries > 0)
             {
                 selected = criteria_in_filter[key].TrySelect();
 
@@ -124,17 +124,17 @@ namespace EpamExam
                     selected_options_list.Add(key);
                 }
 
-                do  
+                do
                 {
                     selected_criterion = gen.Next(criteria_in_filter.Keys.Count);
                     key = criteria_in_filter.Keys.ToList()[selected_criterion];
                     tries--;
-                } while (selected_options_list.Contains(key) && tries > 0);  
+                } while (selected_options_list.Contains(key) && tries > 0);
 
                 tries--;
             }
         }
-        
+
         /// <summary>
         /// Generates a set of CriteriaCount criteria from the elements in filters
         /// </summary>
@@ -152,24 +152,24 @@ namespace EpamExam
             int selected_filter = gen.Next(filters.Keys.Count);
             Enum key = filters.Keys.ToList()[selected_filter];
 
-            while (filter_count > 0 && tries > 0)  
+            while (filter_count > 0 && tries > 0)
             {
                 List<Enum> selected_options_list;
 
-                SelectRandomOptions(filters[key],out selected_options_list);
-                
-                if (selected_options_list.Count > 0) 
+                SelectRandomOptions(filters[key], out selected_options_list);
+
+                if (selected_options_list.Count > 0)
                 {
                     selected_criteria_set.Add(key, selected_options_list);
                     filter_count--;
-                }  
-                
-                do 
+                }
+
+                do
                 {
                     selected_filter = gen.Next(filters.Keys.Count);
                     key = filters.Keys.ToList()[selected_filter];
                     tries--;
-                } while (selected_criteria_set.Keys.Contains(key) && tries > 0); 
+                } while (selected_criteria_set.Keys.Contains(key) && tries > 0);
 
                 tries--;
             }
@@ -192,7 +192,7 @@ namespace EpamExam
                 }
                 catch (System.Reflection.TargetInvocationException)
                 {
-                    break;  
+                    break;
                     //If the element isn't found this either means 
                     //that we've reached the limit or we are too slow. 
                     //in either case, we stop
@@ -201,12 +201,12 @@ namespace EpamExam
                 {
                     break;
                 }
-                goods = homepage.contGoods.FindElements(By.ClassName(GoodsClassName)); 
+                goods = homepage.contGoods.FindElements(By.ClassName(GoodsClassName));
                 if (goods.Count > GoodsTestedCount) break;
             }
-            goods = homepage.contGoods.FindElements(By.ClassName(GoodsClassName)); 
+            goods = homepage.contGoods.FindElements(By.ClassName(GoodsClassName));
         }
-    
+
         /// <summary>
         /// Method for switching to the properties tab of the good
         /// </summary>
@@ -215,9 +215,9 @@ namespace EpamExam
         /// <returns></returns>
         public static GoodPropertiesPage OpenAllPropertiesPage(this GoodTitlePage good_title_page, IWebDriver driver)
         {
-            good_title_page.lnkAllProperties.Click(); 
-            Thread.Sleep(LoadingTimeout); 
-            return new GoodPropertiesPage(driver); 
-        }        
+            good_title_page.lnkAllProperties.Click();
+            Thread.Sleep(LoadingTimeout);
+            return new GoodPropertiesPage(driver);
+        }
     }
 }
