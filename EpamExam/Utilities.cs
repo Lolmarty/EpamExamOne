@@ -26,7 +26,7 @@ namespace EpamExam
         /// <param name="driver"></param>
         public static void SwitchFocus(this IWebDriver driver)
         {
-            Thread.Sleep(LoadingTimeout);  //Wait for the tab switch
+            Thread.Sleep(LoadingTimeout);
             string current_window = driver.WindowHandles.Last();  //get the window
             driver.SwitchTo().Window(current_window);  //tell the driver to look at it
         }
@@ -38,8 +38,8 @@ namespace EpamExam
         /// <param name="driver"></param>
         public static void SwitchTabRight(this IWebDriver driver)
         {
-            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + Keys.Tab);  //Ctrl + Tab - Switches to the next tab to the right from the current one
-            driver.SwitchFocus();  //to switch focus to current tab
+            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + Keys.Tab);  
+            driver.SwitchFocus();  //to switch focus to current tab, otherwise the driver will be left behind
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace EpamExam
         /// <param name="driver"></param>
         public static void SwitchTabLeft(this IWebDriver driver)
         {
-            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + Keys.Shift + Keys.Tab);  //Ctrl + Shift + Tab - Switches to the next tab to the left from the current one
+            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + Keys.Shift + Keys.Tab); 
             driver.SwitchFocus();  //to switch focus to current tab
         }
 
@@ -60,7 +60,7 @@ namespace EpamExam
         /// <param name="driver"></param>
         public static void CloseCurrentTab(this IWebDriver driver)
         {
-            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + 'w');  //Close tab
+            driver.FindElement(By.TagName(BodyTag)).SendKeys(Keys.Control + 'w');
             driver.SwitchFocus();
         }
 
@@ -94,7 +94,7 @@ namespace EpamExam
         /// <param name="element"></param>
         public static void OpenLinkInNewTab(this IWebElement element, IWebDriver driver)
         {
-            element.SendKeys(Keys.Control + Keys.Return);  //Ctrl + Enter - Opens link in new tab
+            element.SendKeys(Keys.Control + Keys.Return);
         }
         
         /// <summary>
@@ -104,35 +104,32 @@ namespace EpamExam
         /// <param name="selected_options_list"></param>
         public static void SelectRandomOptions(Dictionary<Enum, IWebElement> criteria_in_filter, out List<Enum> selected_options_list)
         {
-            //Initialize criteria list
             selected_options_list = new List<Enum>();
 
-            //Initialize RNG
             Random gen = new Random();
             
-            //Pick a random option
             bool selected = false;
             int tries = Tries;
             int options_count = OptionCount;
-            int selected_criterion = gen.Next(criteria_in_filter.Keys.Count);  //select the first option beforehand
-            Enum key = criteria_in_filter.Keys.ToList()[selected_criterion];  //okay, this is pretty stupid, collections should be indexable no?
+            int selected_criterion = gen.Next(criteria_in_filter.Keys.Count);
+            Enum key = criteria_in_filter.Keys.ToList()[selected_criterion];  
 
-            while (options_count > 0 && tries > 0) //IF we (still) have to pick criteria AND have tries left
+            while (options_count > 0 && tries > 0) 
             {
                 selected = criteria_in_filter[key].TrySelect();
 
-                if (selected)  //and if we succeed we cross out another option and add it to the list
+                if (selected)
                 {
                     options_count--;
                     selected_options_list.Add(key);
                 }
 
-                do  //then we try to pick another unique option...
+                do  
                 {
                     selected_criterion = gen.Next(criteria_in_filter.Keys.Count);
                     key = criteria_in_filter.Keys.ToList()[selected_criterion];
                     tries--;
-                } while (selected_options_list.Contains(key) && tries > 0);  //...until we find a unique one (that is not on the list) OR run out of tries somehow
+                } while (selected_options_list.Contains(key) && tries > 0);  
 
                 tries--;
             }
@@ -147,39 +144,31 @@ namespace EpamExam
         {
             selected_criteria_set = new Dictionary<Enum, List<Enum>>();
 
-            //Initialize RNG
             Random gen = new Random();
 
-            //For now the criteria count will be same as criteria count. Also we pick the first criterion beforehand
             int tries = Tries;
             int filter_count = CriteriaCount;
             int selected_filter = gen.Next(filters.Keys.Count);
             Enum key = filters.Keys.ToList()[selected_filter];
 
-            while (filter_count > 0 && tries > 0)  //if we (still) have filters to pick AND have tries left 
-            //(yes, we need tries here, because infinite cycles are never a good thing)
+            while (filter_count > 0 && tries > 0)  
             {
-                //Reserve a list of criteria
                 List<Enum> selected_options_list;
 
-                //we pick one we have "selected" a step or an iteration before
-                //and for any criterion we have seletced we 
-                //Call the method that fills the list corresponding with the selected criterion 
                 SelectRandomOptions(filters[key],out selected_options_list);
                 
-                //sometimes the list may come back empty so we check
-                if (selected_options_list.Count > 0)  //if we have selected any options in this filter
+                if (selected_options_list.Count > 0) 
                 {
-                    selected_criteria_set.Add(key, selected_options_list);  //we add it to the set
-                    filter_count--; //and check off a criterion
-                }  //else we don't add it so that other criteria may be used afterwards
+                    selected_criteria_set.Add(key, selected_options_list);
+                    filter_count--;
+                }  
                 
-                do  //then we try to pick another unique criterion...
+                do 
                 {
                     selected_filter = gen.Next(filters.Keys.Count);
                     key = filters.Keys.ToList()[selected_filter];
                     tries--;
-                } while (selected_criteria_set.Keys.Contains(key) && tries > 0);  //...until we find a unique one (that is not in the set) OR run out of tries somehow
+                } while (selected_criteria_set.Keys.Contains(key) && tries > 0); 
 
                 tries--;
             }
@@ -196,7 +185,6 @@ namespace EpamExam
             {
                 try
                 {
-                    //Give some time for the page to load
                     Thread.Sleep(LoadingTimeout);
                     homepage.MoreGoodsPane.Click();
                     //Find (implicitly) the loader element and press it
@@ -207,9 +195,9 @@ namespace EpamExam
                 }
                 catch (NoSuchElementException)
                 {
-                    break;  //same here
+                    break;
                 }
-                goods = homepage.contGoods.FindElements(By.ClassName(GoodsClassName));  //Select all the objects that contain links to goods
+                goods = homepage.contGoods.FindElements(By.ClassName(GoodsClassName)); 
                 if (goods.Count > GoodsTestedCount) break;
             }
             goods = homepage.contGoods.FindElements(By.ClassName(GoodsClassName)); 
@@ -223,9 +211,9 @@ namespace EpamExam
         /// <returns></returns>
         public static GoodPropertiesPage OpenAllPropertiesPage(this GoodTitlePage good_title_page, IWebDriver driver)
         {
-            good_title_page.lnkAllProperties.Click();  //select the "Characteristics" tab
-            Thread.Sleep(LoadingTimeout);  //wait for it to load
-            return new GoodPropertiesPage(driver);  //create a POM and return
+            good_title_page.lnkAllProperties.Click(); 
+            Thread.Sleep(LoadingTimeout); 
+            return new GoodPropertiesPage(driver); 
         }        
     }
 }
